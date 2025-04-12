@@ -30,13 +30,14 @@ function TasksTable() {
     const [creationDateStart, setCreationDateStart] = useState<string | undefined>();
     const [creationDateEnd, setCreationDateEnd] = useState<string | undefined>();
     const [isFiltersVisible, setIsFiltersVisible] = useState(false);
+    const apiBaseUrl = import.meta.env.VITE_TASK_API_BASE_URL;
     const navigate = useNavigate();
     const now = new Date().getTime();
 
     useEffect(() => {
         async function getTasks() {
             try {
-                const response = await fetch(`http://localhost:5000/tareas`);
+                const response = await fetch(`${apiBaseUrl}/tareas`);
                 if (!response.ok) {
                     const errorData = await response.json();
                     console.error('Error while getting tasks information:', errorData);
@@ -44,7 +45,7 @@ function TasksTable() {
                 }
                 const tasksResponse = await response.json();
                 setTasks(tasksResponse);
-                console.log('Task found:', tasksResponse);
+                console.log('Task found:', tasksResponse.length);
             } catch (error) {
                 console.error('Error on connection while getting tasks information:', error);
             }
@@ -170,7 +171,7 @@ function TasksTable() {
     // General handlers
     async function handleDeleteTask(id: Number) {
         try {
-            const response = await fetch(`http://localhost:5000/tareas/${id}`, {
+            const response = await fetch(`${apiBaseUrl}/tareas/${id}`, {
                 method: 'DELETE',
             });
 

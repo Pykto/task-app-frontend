@@ -11,6 +11,7 @@ const defaultFormState: FormState = {
 
 function NewTask() {
     const [formData, setFormData] = useState<FormState>(defaultFormState);
+    const apiBaseUrl = import.meta.env.VITE_TASK_API_BASE_URL;
     const navigate = useNavigate();
 
     function handleInputChange(event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
@@ -31,7 +32,7 @@ function NewTask() {
         };
 
         try {
-            const response = await fetch("http://localhost:5000/tareas", {
+            const response = await fetch(`${apiBaseUrl}/tareas`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

@@ -1,54 +1,59 @@
-# React + TypeScript + Vite
+# Frontend de la Aplicación de Gestión de Tareas
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este es el frontend de la aplicación de gestión de tareas, construido con Vite + React . Se comunica con una API REST para la gestión de las tareas.
 
-Currently, two official plugins are available:
+## Rutas de la Aplicación
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+* **`/`**: Página principal que muestra la lista de tareas. Permite ver, filtrar y ordenar las tareas existentes.
+* **`/nueva-tarea`**: Formulario para crear una nueva tarea.
+* **`/editar-tarea/:id`**: Formulario para editar una tarea existente, donde `:id` es el identificador único de la tarea.
 
-## Expanding the ESLint configuration
+## Estructura del Proyecto
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```
+├── src/
+│   ├── main.tsx          # Punto de entrada principal de la aplicación React.
+│   ├── App.tsx           # Componente raíz de la aplicación.
+│   ├── index.css         # Archivo de estilos CSS global.
+│   ├── components/
+│   │   ├── EditTask.tsx  # Formulario para editar una tarea existente.
+│   │   ├── NewTask.tsx   # Formulario para crear una nueva tarea.
+│   │   ├── TaskTable.tsx # Tabla mostrando la lista de tareas.
+│   ├── types/
+│   │   ├── task.d.ts     # Archivo de definición de tipo para la entidad 'Task'..
+│   ├── assets/
+│   └── ...
+├── index.html          # Archivo HTML principal.
+├── README.md           # Este archivo
+└── ...
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Comandos para Correr la Aplicación
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+1.  **Clonar el Repositorio:**
+    ```bash
+    git clone https://github.com/Pykto/task-app-frontend.git
+    cd task-app-frontend
+    ```
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+2.  **Instalar las Dependencias:**
+
+    Si utilizas **npm**:
+    ```bash
+    npm install
+    ```
+
+3.  **Configurar las Variables de Entorno:**
+    ```
+    VITE_TASK_API_BASE_URL=http://localhost:5000
+    ```
+
+4.  **Iniciar la Aplicación en Modo Desarrollo:**
+
+    ```bash
+    npm run dev
+    ```
+
+## Notas Adicionales
+
+* Asegurar de que la API backend esté en ejecución y accesible desde la URL configurada en las variables de entorno.

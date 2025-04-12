@@ -15,6 +15,7 @@ function EditTask() {
     const [formData, setFormData] = useState<FormState>(defaultFormState);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    const apiBaseUrl = import.meta.env.VITE_TASK_API_BASE_URL;
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -65,7 +66,7 @@ function EditTask() {
         }
 
         try {
-            const response = await fetch(`http://localhost:5000/tareas/${id}`, {
+            const response = await fetch(`${apiBaseUrl}/tareas/${id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
