@@ -44,6 +44,9 @@ Este es el frontend de la aplicación de gestión de tareas, construido con Vite
     ```
 
 3.  **Configurar las Variables de Entorno:**
+  
+    Archivo `.env` en la raíz del proyecto:
+
     ```
     VITE_TASK_API_BASE_URL=http://localhost:5000
     ```
